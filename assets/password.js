@@ -35,11 +35,11 @@ var generatePassword = function () {
     var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "+", "="];
+    var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "+", "="];
 
 
     // LIST OF CHARACTERS FUNCTION CAN CHOOSE FROM//
-    var passwordChar = [];
+    var passwordCharacterVault = [];
 
     // VALIDATE USER'S CHOSEN PASSWORD LENGTH
     if (passwordLength >= 8 && passwordLength <= 128) {
@@ -48,36 +48,36 @@ var generatePassword = function () {
         var isUpperCase = window.confirm("Would you like to include UPPER CASE letters in your password?");
         var isLowerCase = window.confirm("Would you like to include lowercase letters in your password?");
         var isNumber = window.confirm("Would you like to include numbers in your password?");
-        var isSpecialChar = window.confirm("Would you like to include special characters? (@, $, !, etc.)");
-        if (!isUpperCase && !isLowerCase && !isNumber && !isSpecialChar) {
+        var isSpecialCharacters = window.confirm("Would you like to include special characters? (@, $, !, etc.)");
+        if (!isUpperCase && !isLowerCase && !isNumber && !isSpecialCharacters) {
             return "You must choose at least one character type for your password.";
         }
         //RANDOM PASSWORD STORED HERE//
         var randomPassword = "";
 
-        // IF USER WANTS UPPERCASE, CONCATENATE upperCase ARRAY TO passwordChar //
+        // IF USER WANTS UPPERCASE, CONCATENATE upperCase ARRAY TO passwordCharacterVault //
         if (isUpperCase) {
-            passwordChar = passwordChar.concat(upperCase);
+            passwordCharacterVault = passwordCharacterVault.concat(upperCase);
         }
 
-        // IF USER WANTS LOWERCASE, CONCATENATE lowerCase ARRAY TO passwordChar //
+        // IF USER WANTS LOWERCASE, CONCATENATE lowerCase ARRAY TO passwordCharacterVault //
         if (isLowerCase) {
-            passwordChar = passwordChar.concat(lowerCase);
+            passwordCharacterVault = passwordCharacterVault.concat(lowerCase);
         }
 
-        // IF USER WANTS NUMBERS, CONCATENATE numbers ARRAY TO passwordChar //
+        // IF USER WANTS NUMBERS, CONCATENATE numbers ARRAY TO passwordCharacterVault //
         if (isNumber) {
-            passwordChar = passwordChar.concat(numbers);
+            passwordCharacterVault = passwordCharacterVault.concat(numbers);
         }
 
-        // IF USER WANTS SPECIAL CHARACTERS, CONCATENATE specialChar ARRAY TO passwordChar //
-        if (isSpecialChar) {
-            passwordChar = passwordChar.concat(specialChar);
+        // IF USER WANTS SPECIAL CHARACTERS, CONCATENATE specialCharacters ARRAY TO passwordCharacterVault //
+        if (isSpecialCharacters) {
+            passwordCharacterVault = passwordCharacterVault.concat(specialCharacters);
         }
 
         //FOR LOOP THAT CREATES RANDOM PASSWORD AND PLACES IT IN randomPassword //
         for (var i = 0; i < passwordLength; i++) {
-            randomPassword = randomPassword + passwordChar[Math.floor(Math.random() * passwordChar.length)];
+            randomPassword = randomPassword + passwordCharacterVault[Math.floor(Math.random() * passwordCharacterVault.length)];
         }
         return randomPassword;
 
