@@ -50,9 +50,37 @@ var generatePassword = function () {
         var isNumber = window.confirm("Would you like to include numbers in your password?");
         var isSpecialChar = window.confirm("Would you like to include special characters? (@, $, !, etc.)");
         if (!isUpperCase && !isLowerCase && !isNumber && !isSpecialChar) {
-            window.alert("You must choose at least one character type for your password.")
-            generatePassword();
+            return "You must choose at least one character type for your password.";
         }
+        //RANDOM PASSWORD STORED HERE//
+        var randomPassword = "";
+
+        // IF USER WANTS UPPERCASE, CONCATENATE upperCase ARRAY TO passwordChar //
+        if (isUpperCase) {
+            passwordChar = passwordChar.concat(upperCase);
+        }
+
+        // IF USER WANTS LOWERCASE, CONCATENATE lowerCase ARRAY TO passwordChar //
+        if (isLowerCase) {
+            passwordChar = passwordChar.concat(lowerCase);
+        }
+
+        // IF USER WANTS NUMBERS, CONCATENATE numbers ARRAY TO passwordChar //
+        if (isNumber) {
+            passwordChar = passwordChar.concat(numbers);
+        }
+
+        // IF USER WANTS SPECIAL CHARACTERS, CONCATENATE specialChar ARRAY TO passwordChar //
+        if (isSpecialChar) {
+            passwordChar = passwordChar.concat(specialChar);
+        }
+
+        //FOR LOOP THAT CREATES RANDOM PASSWORD AND PLACES IT IN randomPassword //
+        for (var i = 0; i < passwordLength; i++) {
+            randomPassword = randomPassword + passwordChar[Math.floor(Math.random() * passwordChar.length)];
+        }
+        return randomPassword;
+
         //IF USER CHOOSES A NUMBER OUTSIDE OF 8 AND 120, PROMPT AND EXECUTE FUNCTION AGAIN //
     } else {
         window.alert("You must choose a password between 8 and 128 characters.");
