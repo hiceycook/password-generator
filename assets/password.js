@@ -15,10 +15,10 @@
 // THEN the password is either displayed in an alert or written to the page
 
 
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
+// WRITE PASSWORD TO THE #PASSWORD INPUT//
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
@@ -26,6 +26,40 @@ function writePassword() {
     passwordText.value = password;
 
 }
+//PASSWORD FUNCTION THAT WRITES TO THE DOM//
+var generatePassword = function () {
+    //PROMPT USER TO CHOOSE A PASSWORD LENGTH (BETWEEN 8-128)//
+    var passwordLength = window.prompt("How long would you like your password to be? Please choose between 8 and 128 characters?");
 
-// Add event listener to generate button
+    //ARRAYS FOR EACH CORRESPONDING WINDOW CONFIRM//
+    var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "+", "="];
+
+
+    // LIST OF CHARACTERS FUNCTION CAN CHOOSE FROM//
+    var passwordChar = [];
+
+    // VALIDATE USER'S CHOSEN PASSWORD LENGTH
+    if (passwordLength >= 8 && passwordLength <= 128) {
+        //PASSWORD GENERATION LOGIC BELOW//
+        // USER CHARACTER TYPE SELECTION//
+        var isUpperCase = window.confirm("Would you like to include UPPER CASE letters in your password?");
+        var isLowerCase = window.confirm("Would you like to include lowercase letters in your password?");
+        var isNumber = window.confirm("Would you like to include numbers in your password?");
+        var isSpecialChar = window.confirm("Would you like to include special characters? (@, $, !, etc.)");
+        if (!isUpperCase && !isLowerCase && !isNumber && !isSpecialChar) {
+            window.alert("You must choose at least one character type for your password.")
+            generatePassword();
+        }
+        //IF USER CHOOSES A NUMBER OUTSIDE OF 8 AND 120, PROMPT AND EXECUTE FUNCTION AGAIN //
+    } else {
+        window.alert("You must choose a password between 8 and 128 characters.");
+        generatePassword();
+    }
+
+}
+
+//EVENT LISTENER TO BUTTON
 generateBtn.addEventListener("click", writePassword);
